@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>แบบฟอร์มสมัครสมาชิก เนยยปฏิปทา</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    font-family:'Noto Sans Thai', sans-serif;
+    background: linear-gradient(135deg, #e6f4ea, #e0f2f1, #f3e5f5);
+    color:#2f3e46;
+}
+
+.container{
+    max-width:800px;
+    margin:auto;
+    padding:30px;
+    background:rgba(255,255,255,0.9);
+    border-radius:20px;
+    margin-top:40px;
+    margin-bottom:40px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+h1{
+    text-align:center;
+    font-size:22px;
+    line-height:1.6;
+    font-weight:600;
+}
+
+h2{
+    text-align:center;
+    font-size:15px;
+    line-height:1.6;
+    font-weight:300;
+    margin-bottom:30px;
+}
+
+label{
+    display:block;
+    margin-top:20px;
+    font-weight:500;
+}
+
+input, select, textarea{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    border-radius:8px;
+    border:1px solid #cfd8dc;
+    font-size:14px;
+}
+
+textarea{
+    min-height:100px;
+}
+
+button{
+    margin-top:30px;
+    width:100%;
+    padding:12px;
+    background:#a5d6a7;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#81c784;
+}
+
+.success{
+    text-align:center;
+    display:none;
+    margin-top:20px;
+    color:#2e7d32;
+}
+
+@media(max-width:600px){
+    .container{padding:20px;}
+    h1{font-size:18px;}
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>
+แบบฟอร์มสมัครสมาชิก เนยยปฏิปทา <br>
+และจองวันเข้ารับการปุจฉา-วิสัชนา (เพื่อสอบถามความเข้าใจ) <br>
+โดย พระอาจารย์ ธีร์ ธีรชโย
+</h1>
+
+<h2>
+ผู้ที่สนใจเข้าร่วมปฏิบัติธรรมตามแนวทาง "เนยยปฏิปทา" โดยพระอาจารย์ (ธีร์) ธีรชโย 
+ณ ภูตถาคต (Buddha Valley) อ.เชียงคาน จ.เลย <br><br>
+สามารถกรอกรายละเอียดของท่านลงในแบบฟอร์ม 
+เพื่อสมัครเป็นสมาชิกและจองวัน-เวลาในการปุจฉา-วิสัชนา (สอบถามความเข้าใจ) กับพระอาจารย์ได้ <br><br>
+ติดต่อสอบถามเพิ่มเติม: คุณกุ้ง 081-6418871
+</h2>
+
+<form id="bookingForm">
+
+<label>1. กรุณาระบุคำนำหน้า</label>
+<select name="entry.517826020" required>
+<option value="">เลือก</option>
+<option>พระ</option>
+<option>สามเณร</option>
+<option>นักบวชหญิง/ภิกษุณี/สามเณรี</option>
+<option>แม่ชี</option>
+<option>นาย</option>
+<option>นางสาว</option>
+<option>นาง</option>
+<option>อื่นๆ</option>
+</select>
+
+<label>2. ชื่อ-นามสกุล / ระบุฉายา</label>
+<input type="text" name="entry.1594728076" required>
+
+<label>3. อายุ (ปี) / พรรษา</label>
+<input type="number" name="entry.1206791559" required>
+
+<label>4. เบอร์โทรศัพท์</label>
+<input type="tel" pattern="[0-9]{10}" name="entry.382307157" required>
+
+<label>5. ที่อยู่ปัจจุบัน</label>
+<input type="text" name="entry.1370178234" required>
+
+<label>6. เลือกวัน</label>
+<input type="date" id="datePicker" required>
+
+<label>เลือกช่วงเวลา</label>
+<select id="timeSlot" required>
+<option value="">เลือกช่วงเวลา</option>
+<option value="10.00-12.00">10.00-12.00</option>
+<option value="14.00-16.00">14.00-16.00</option>
+</select>
+
+<input type="hidden" name="entry.792513834" id="dateFormatted">
+<input type="hidden" name="entry.1226824509" id="timeFormatted">
+
+<label>7. เหตุผลที่สนใจ</label>
+<textarea name="entry.951011617" required></textarea>
+
+<label>8. แนวทางที่เคยปฏิบัติ</label>
+<select name="entry.783569866">
+<option>อานาปานสติ</option>
+<option>พอง-หยุบ</option>
+<option>กสิณ</option>
+<option>พรหมวิหาร เช่น เมตตาภาวนา</option>
+<option>อนุสติ</option>
+<option>อิริยาบถบรรพ</option>
+<option>เนยยปฏิปทา</option>
+<option>ไม่เคยปฏิบัติแนวทางใดๆ มาก่อน</option>
+<option>อื่นๆ</option>
+</select>
+
+<label>9. ยินยอมทำตามข้อกำหนด</label>
+<select name="entry.736170071" required>
+<option value="">เลือก</option>
+<option>ยินดี</option>
+<option>ไม่ยินดี</option>
+</select>
+
+<button type="submit">ส่งข้อมูล</button>
+<div class="success" id="successMsg">
+ส่งข้อมูลเรียบร้อยแล้ว 🙏
+</div>
+
+</form>
+</div>
+
+<script>
+const form = document.getElementById("bookingForm");
+const dateInput = document.getElementById("datePicker");
+const timeSlot = document.getElementById("timeSlot");
+
+const todayYear = new Date().getFullYear();
+dateInput.min = todayYear+"-04-01";
+dateInput.max = todayYear+"-07-24";
+
+form.addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const selectedDate = dateInput.value;
+    const selectedTime = timeSlot.value;
+
+    if(!selectedDate || !selectedTime){
+        alert("กรุณาเลือกวันและเวลา");
+        return;
+    }
+
+    const bookingKey = selectedDate + "-" + selectedTime;
+    if(localStorage.getItem(bookingKey)){
+        alert("ช่วงเวลานี้ถูกจองแล้ว");
+        return;
+    }
+
+    localStorage.setItem(bookingKey,true);
+
+    document.getElementById("dateFormatted").value = selectedDate;
+    document.getElementById("timeFormatted").value = selectedTime;
+
+    fetch("https://docs.google.com/forms/d/e/1FAIpQLSe-jlMU6c7ght5ygUtsa4kt3mLJN8DcXyKplMwEea70X-QT3w/formResponse", {
+        method: "POST",
+        mode: "no-cors",
+        body: new FormData(form)
+    });
+
+    form.reset();
+    document.getElementById("successMsg").style.display="block";
+});
+</script>
+
+</body>
+</html>
