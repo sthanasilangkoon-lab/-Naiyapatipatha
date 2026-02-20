@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>แบบฟอร์มสมัครสมาชิก เนยยปฏิปทา</title>
+    <!-- Google Fonts: Noto Sans Thai -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans Thai', sans-serif;
+            /* พื้นหลังสีฟ้าสบายตา */
+            background: linear-gradient(145deg, #b8e1ff 0%, #d4e8ff 40%, #a9d4ff 80%, #87c5ff 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            line-height: 1.6;
+            color: #2c3e50;
+        }
+
+        .form-card {
+            max-width: 950px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-radius: 40px 40px 30px 30px;
+            box-shadow: 0 25px 45px -15px rgba(0, 80, 120, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+            padding: 2.2rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        /* หัวข้อหลัก จัดการตัดคำและบรรทัดตามที่กำหนด */
+        .header-title {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1.6;
+            color: #1a4b6d;
+            text-shadow: 0 2px 5px rgba(255, 255, 255, 0.8);
+            word-break: keep-all;
+            overflow-wrap: break-word;
+            margin-bottom: 1.5rem;
+            border-left: 8px solid #5fa8d3;
+            padding-left: 1.5rem;
+            background: linear-gradient(to right, rgba(200, 230, 255, 0.4), transparent);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* จัดการแต่ละบรรทัดของ header */
+        .header-line1 {
+            display: block;
+            font-size: 2rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .header-line2 {
+            display: block;
+            font-size: 1.9rem;
+            margin-bottom: 0.2rem;
+            color: #1f5579;
+        }
+
+        .header-line3 {
+            display: block;
+            font-size: 1.7rem;
+            margin-top: 0.2rem;
+            color: #25658b;
+            font-weight: 600;
+        }
+
+        .header-line3 i {
+            color: #f5a97b;
+            margin-right: 0.5rem;
+        }
+
+        .sub-header {
+            font-size: 1.2rem;
+            font-weight: 400;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 1.4rem 1.5rem;
+            border-radius: 30px;
+            margin-bottom: 2rem;
+            color: #2c5282;
+            border: 1px dashed #7ab0d9;
+            word-break: keep-all;
+            overflow-wrap: break-word;
+            box-shadow: 0 8px 18px -8px rgba(0, 100, 150, 0.2);
+            backdrop-filter: blur(2px);
+        }
+
+        .sub-header i {
+            color: #f5a97b;
+            margin-right: 8px;
+        }
+
+        .contact-row {
+            display: inline-block;
+            background: #c9e3ff;
+            padding: 0.3rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 500;
+            margin-top: 0.8rem;
+            border: 1px solid #5f9dc9;
+            color: #1e4a6b;
+            box-shadow: 0 2px 8px rgba(0, 100, 150, 0.2);
+        }
+
+        .field-group {
+            margin-bottom: 2rem;
+            background: rgba(255, 255, 255, 0.75);
+            padding: 1.2rem 1.3rem;
+            border-radius: 24px;
+            box-shadow: 0 8px 18px -8px rgba(0, 80, 120, 0.15);
+            border: 1px solid #c9e3ff;
+            transition: all 0.2s;
+            backdrop-filter: blur(2px);
+        }
+        .field-group:hover {
+            background: rgba(255, 255, 255, 0.85);
+            border-color: #9ac4e4;
+        }
+
+        label {
+            font-size: 1.15rem;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.9rem;
+            color: #1e4a6b;
+            letter-spacing: 0.3px;
+        }
+
+        label i {
+            color: #f5a97b;
+            margin-right: 0.5rem;
+        }
+
+        .radio-group, .inline-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem 1.8rem;
+            align-items: center;
+            margin: 0.5rem 0 0.3rem;
+        }
+
+        .radio-item, .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: #e7f0ff;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            border: 1px solid #9ac4e4;
+            font-weight: 400;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+
+        .radio-item input, .checkbox-item input {
+            accent-color: #f5a97b;
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+
+        input, textarea, select {
+            font-family: 'Noto Sans Thai', sans-serif;
+            border: 1px solid #c9e3ff;
+            background: white;
+            border-radius: 28px;
+            padding: 0.8rem 1.4rem;
+            width: 100%;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.15s;
+            box-shadow: inset 1px 2px 6px rgba(0,0,0,0.02);
+        }
+        input:focus, textarea:focus, select:focus {
+            border-color: #f5a97b;
+            box-shadow: 0 0 0 3px rgba(245, 169, 123, 0.2), inset 0 1px 4px #f5a97b;
+        }
+
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .short-input {
+            max-width: 400px;
+        }
+
+        .date-time-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            align-items: flex-end;
+        }
+        .date-col {
+            flex: 2 1 240px;
+        }
+        .time-col {
+            flex: 1 1 180px;
+        }
+
+        .booking-hint {
+            background: #e7f0ff;
+            border-radius: 30px;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.9rem;
+            color: #1e4a6b;
+            margin-top: 0.6rem;
+            border: 1px solid #9ac4e4;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            backdrop-filter: blur(2px);
+        }
+
+        .booking-hint i {
+            color: #f5a97b;
+        }
+
+        .full-badge {
+            background: #f5bc9c;
+            color: #632e1a;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: 1rem;
+            border: 1px solid #d17d4a;
+        }
+
+        .long-answer {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        .btn-submit, .btn-reset {
+            font-family: 'Noto Sans Thai', sans-serif;
+            border: none;
+            background: #f5a97b;
+            color: #1e3a5f;
+            padding: 1rem 2.8rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+            border-radius: 60px;
+            box-shadow: 0 10px 18px -6px #3d6b8c;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid #ffd7b5;
+            letter-spacing: 0.5px;
+            flex: 1 1 200px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.7rem;
+        }
+
+        .btn-submit {
+            background: linear-gradient(145deg, #ffd7b5, #f5a97b);
+        }
+        .btn-submit:hover {
+            background: #ffc29e;
+            transform: translateY(-3px);
+            box-shadow: 0 18px 28px -8px #2c5778;
+        }
+        .btn-reset {
+            background: #c9e3ff;
+            box-shadow: none;
+            font-size: 1.2rem;
+            background: #c9e3ff;
+            border-color: #9ac4e4;
+            color: #1e4a6b;
+        }
+        .btn-reset:hover {
+            background: #b8d6f5;
+        }
+
+        .response-message {
+            margin-top: 1.8rem;
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #1e6b4c;
+            background: #e7f0ff;
+            border-radius: 50px;
+            padding: 1rem;
+            border: 2px solid #f5a97b;
+            display: none;
+            backdrop-filter: blur(3px);
+        }
+
+        .required-star {
+            color: #c55a2a;
+            font-size: 1.2rem;
+            margin-left: 3px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2.5rem;
+            font-size: 0.9rem;
+            color: #2c5778;
+            border-top: 1px solid #c9e3ff;
+            padding-top: 1rem;
+        }
+        /* responsive */
+        @media (max-width: 600px) {
+            body { padding: 0.6rem; }
+            .form-card { padding: 1.5rem 1rem; }
+            .header-line1, .header-line2 { font-size: 1.5rem; }
+            .header-line3 { font-size: 1.3rem; }
+            .sub-header { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="form-card">
+    <!-- Header แบ่งเป็น 3 บรรทัดตามที่กำหนด -->
+    <div class="header-title">
+        <span class="header-line1"><i class="fas fa-sun" style="color: #f5a97b;"></i> แบบฟอร์มสมัครสมาชิก เนยยปฏิปทา</span>
+        <span class="header-line2">และจองวันเข้ารับการปุจฉา-วิสัชนา (เพื่อสอบถามความเข้าใจ)</span>
+        <span class="header-line3"><i class="fas fa-feather-alt"></i> โดย พระอาจารย์ ธีร์ ธีรชโย</span>
+    </div>
+
+    <div class="sub-header">
+        <i class="fas fa-leaf"></i> ผู้ที่สนใจเข้าร่วมปฏิบัติธรรมตามแนวทาง "เนยยปฏิปทา" โดยพระอาจารย์ ธีร์ ธีรชโย ณ ภูตถาคต (Buddha Valley) อ.เชียงคาน จ.เลย สามารถกรอกรายละเอียดของท่านลงในแบบฟอร์ม เพื่อสมัครเป็นสมาชิกและจองวัน-เวลาในการปุจฉา-วิสัชนา (สอบถามความเข้าใจ) กับพระอาจารย์ได้
+        <div class="contact-row">
+            <i class="fas fa-phone-alt"></i> ติดต่อสอบถาม: คุณกุ้ง หมายเลขโทรศัพท์: 081-6418871
+        </div>
+    </div>
+
+    <!-- FORM ใช้ POST ไปยัง Google Form โดยตรง (ไม่เปลี่ยนหน้าเพราะ target iframe) -->
+    <form id="dhammaForm" target="hidden_iframe" method="POST" action="https://docs.google.com/forms/d/e/1FAIpQLSe-jlMU6c7ght5ygUtsa4kt3mLJN8DcXyKplMwEea70X-QT3w/formResponse">
+        <!-- hidden iframe เพื่อรับ response ซ่อนการเปลี่ยนหน้า -->
+        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+        <!-- 1. คำนำหน้า (entry.517826020) -->
+        <div class="field-group">
+            <label><i class="fas fa-user-tie"></i> กรุณาระบุคำนำหน้า <span class="required-star">*</span></label>
+            <div class="radio-group">
+                <span class="radio-item"><input type="radio" name="entry.517826020" value="พระ" required> พระ</span>
+                <span class="radio-item"><input type="radio" name="entry.517826020" value="สามเณร"> สามเณร</span>
+                <span class="radio-item"><input type="radio" name="entry.517826020" value="นักบวชหญิง/ภิกษุณี/สามเณรี"> นักบวชหญิง/ภิกษุณี/สามเณรี</span>
+                <span class="radio-item"><input type="radio" name="entry.517826020" value="แม่ชี"> แม่ชี</span>
+                <span class="radio-item"><input type="radio" name="entry.517826020" value="นาย"> นาย</span>
+                <span class="radio-item"><input type="radio" name="entry.517826020" value="นาง"> นาง</span>
+                <span class="radio-item"><input type="radio" name="entry.517826020" value="นางสาว"> นางสาว</span>
+                <span class="radio-item"><input type="radio" name="entry.517826020" value="อื่นๆ" id="prefixOtherRadio"> อื่นๆ</span>
+            </div>
+            <div style="margin-top: 0.7rem;">
+                <input type="text" name="entry.517826020_other" id="prefixOtherInput" placeholder="โปรดระบุ คำนำหน้าอื่นๆ" style="max-width: 300px;" disabled>
+            </div>
+        </div>
+
+        <!-- 2. ชื่อ-นามสกุล/ฉายา (entry.1594728076) -->
+        <div class="field-group">
+            <label><i class="fas fa-pen"></i> ชื่อ-นามสกุล / ระบุฉายา (ในกรณีที่เป็นพระภิกษุ/สามเณร) <span class="required-star">*</span></label>
+            <input type="text" name="entry.1594728076" placeholder="เช่น  พระมหาสมชาย  หรือ สมชาย ใจดี" required>
+        </div>
+
+        <!-- 3. อายุ/พรรษา (entry.1206791559) -->
+        <div class="field-group">
+            <label><i class="fas fa-calendar-alt"></i> อายุ (ปี) / กรุณาใส่ตัวเลขพรรษา ในกรณีที่เป็นบรรพชิต <span class="required-star">*</span></label>
+            <input type="number" name="entry.1206791559" min="1" max="120" step="1" placeholder="เช่น 35" class="short-input" required>
+        </div>
+
+        <!-- 4. เบอร์โทร (entry.382307157) -->
+        <div class="field-group">
+            <label><i class="fas fa-mobile-alt"></i> เบอร์โทรศัพท์ (กรุณากรอกให้ครบ 10 หลัก เช่น 080-0000000) <span class="required-star">*</span></label>
+            <input type="text" name="entry.382307157" placeholder="081-1234567" pattern="[0-9\-]{10,12}" required class="short-input">
+        </div>
+
+        <!-- 5. ที่อยู่ปัจจุบัน (entry.1370178234) -->
+        <div class="field-group">
+            <label><i class="fas fa-home"></i> กรุณากรอกที่อยู่ปัจจุบันของท่าน <span class="required-star">*</span></label>
+            <input type="text" name="entry.1370178234" placeholder="บ้านเลขที่ ถนน ตำบล อำเภอ จังหวัด" required>
+        </div>
+
+        <!-- 6. เลือกวันเวลา จอง calendar + time (entry.792513834 สำหรับวันที่ / entry.1226824509 สำหรับช่วงเวลา) -->
+        <div class="field-group">
+            <label><i class="far fa-calendar-check"></i> กรุณาเลือกวัน เวลา ในการเข้ารับการปุจฉา-วิสัชนา (เพื่อสอบถามความเข้าใจ) <span class="required-star">*</span></label>
+            <div class="date-time-row">
+                <div class="date-col">
+                    <input type="date" name="entry.792513834" id="bookingDate" min="2025-04-01" max="2025-07-24" required>
+                </div>
+                <div class="time-col">
+                    <select name="entry.1226824509" id="bookingTime" required>
+                        <option value="" disabled selected>-- เลือกช่วงเวลา --</option>
+                        <option value="ช่วงเช้า เวลา 10.00-12.00 น.">10.00-12.00 น.</option>
+                        <option value="ช่วงบ่าย เวลา 14.00-16.00 น.">14.00-16.00 น.</option>
+                    </select>
+                </div>
+            </div>
+            <!-- ข้อความจำลอง slot การจอง -->
+            <div class="booking-hint" id="bookingStatus">
+                <i class="fas fa-info-circle"></i> เลือกวันและเวลาเพื่อตรวจสอบสถานะ (จำลอง)
+                <span id="slotFullMessage" class="full-badge" style="display:none;">ช่วงเวลานี้ถูกจองแล้ว</span>
+            </div>
+            <div style="font-size:0.9rem; color:#b56f38;">(ระบบจำลองการจอง: วันที่ 1-7 เม.ย.68 เวลาเช้าถูกจองแล้ว ทดสอบ)</div>
+        </div>
+
+        <!-- 7. เหตุผลที่สนใจ (entry.951011617) -->
+        <div class="field-group">
+            <label><i class="fas fa-heart"></i> กรุณาระบุเหตุผลที่ท่านสนใจการปฏิบัติธรรมตามเนยยปฏิปทา <span class="required-star">*</span></label>
+            <textarea name="entry.951011617" class="long-answer" placeholder="เหตุผล/ความตั้งใจ..." required></textarea>
+        </div>
+
+        <!-- 8. เคยปฏิบัติแนวทางใด (entry.783569866) พร้อมอื่นๆ -->
+        <div class="field-group">
+            <label><i class="fas fa-dharmachakra"></i> ท่านเคยปฏิบัติธรรมผ่านแนวทางใดดังต่อไปนี้มาก่อนหรือไม่ <span class="required-star">*</span></label>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.7rem 1.5rem;">
+                <span class="checkbox-item"><input type="checkbox" name="entry.783569866" value="อานาปานสติ"> อานาปานสติ</span>
+                <span class="checkbox-item"><input type="checkbox" name="entry.783569866" value="พอง-ยุบ"> พอง-ยุบ</span>
+                <span class="checkbox-item"><input type="checkbox" name="entry.783569866" value="กสิณ"> กสิณ</span>
+                <span class="checkbox-item"><input type="checkbox" name="entry.783569866" value="พรหมวิหาร เช่น เมตตาภาวนา"> พรหมวิหาร เช่น เมตตาภาวนา</span>
+                <span class="checkbox-item"><input type="checkbox" name="entry.783569866" value="อนุสติ"> อนุสติ</span>
+                <span class="checkbox-item"><input type="checkbox" name="entry.783569866" value="อิริยาบถบรรพ"> อิริยาบถบรรพ</span>
+                <span class="checkbox-item"><input type="checkbox" name="entry.783569866" value="เนยยปฏิปทา"> เนยยปฏิปทา</span>
+                <span class="checkbox-item"><input type="checkbox" name="entry.783569866" value="ไม่เคยปฏิบัติแนวทางใดๆ มาก่อน"> ไม่เคยปฏิบัติแนวทางใดๆ มาก่อน</span>
+                <span class="checkbox-item"><input type="checkbox" name="entry.783569866" value="อื่นๆ" id="practiceOtherCheck"> อื่นๆ</span>
+            </div>
+            <div style="margin-top: 0.8rem;">
+                <input type="text" name="entry.783569866_other" id="practiceOtherInput" placeholder="ระบุแนวทางอื่นๆ" style="max-width: 350px;" disabled>
+            </div>
+        </div>
+
+        <!-- 9. ยินดี/ไม่ยินดี (entry.736170071) -->
+        <div class="field-group">
+            <label><i class="fas fa-hand-holding-heart"></i> ข้าพเจ้ายินดีที่จะทำตามข้อแนะนำหรือข้อกำหนดในการเข้าร่วมปฏิบัติธรรมครั้งนี้ทุกประการ <span class="required-star">*</span></label>
+            <div class="radio-group">
+                <span class="radio-item"><input type="radio" name="entry.736170071" value="ยินดี" required> ยินดี</span>
+                <span class="radio-item"><input type="radio" name="entry.736170071" value="ไม่ยินดี"> ไม่ยินดี</span>
+            </div>
+        </div>
+
+        <!-- ปุ่มดำเนินการ -->
+        <div class="action-buttons">
+            <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> ส่งข้อมูล</button>
+            <button type="reset" class="btn-reset"><i class="fas fa-undo-alt"></i> ล้างฟอร์ม</button>
+        </div>
+        <div id="customResponseMsg" class="response-message">
+            <i class="fas fa-check-circle"></i> ท่านได้กรอกข้อมูลและส่งใบสมัครครบถ้วนแล้ว กรุณารอการติดต่อจากเจ้าหน้าที่
+        </div>
+    </form>
+    <footer>
+        <i class="fas fa-dharmachakra"></i> เนยยปฏิปทา · ภูตถาคต · เชียงคาน เลย
+    </footer>
+</div>
+
+<script>
+    (function() {
+        // จัดการคำนำหน้า "อื่นๆ"
+        const prefixOtherRadio = document.getElementById('prefixOtherRadio');
+        const prefixOtherInput = document.getElementById('prefixOtherInput');
+        prefixOtherRadio.addEventListener('change', function() {
+            prefixOtherInput.disabled = !this.checked;
+            if (this.checked) prefixOtherInput.focus();
+        });
+
+        // ปฏิบัติธรรมอื่นๆ
+        const practiceOtherCheck = document.getElementById('practiceOtherCheck');
+        const practiceOtherInput = document.getElementById('practiceOtherInput');
+        practiceOtherCheck.addEventListener('change', function() {
+            practiceOtherInput.disabled = !this.checked;
+            if (this.checked) practiceOtherInput.focus();
+        });
+
+        // จำลองการจองซ้ำ
+        const dateInput = document.getElementById('bookingDate');
+        const timeSelect = document.getElementById('bookingTime');
+        const slotFullMsg = document.getElementById('slotFullMessage');
+        function checkFakeBooking() {
+            let dateVal = dateInput.value;
+            let timeVal = timeSelect.value;
+            if (dateVal && timeVal) {
+                const selectedDate = new Date(dateVal + 'T00:00:00');
+                const start = new Date('2025-04-01T00:00:00');
+                const end = new Date('2025-04-07T23:59:59');
+                if (selectedDate >= start && selectedDate <= end && timeVal.includes('10.00-12.00')) {
+                    slotFullMsg.style.display = 'inline-block';
+                    document.querySelector('button[type="submit"]').disabled = true;
+                    slotFullMsg.innerText = ' ช่วงเวลานี้ถูกจองแล้ว (จำลอง)';
+                } else {
+                    slotFullMsg.style.display = 'none';
+                    document.querySelector('button[type="submit"]').disabled = false;
+                }
+            } else {
+                slotFullMsg.style.display = 'none';
+                document.querySelector('button[type="submit"]').disabled = false;
+            }
+        }
+        dateInput.addEventListener('change', checkFakeBooking);
+        timeSelect.addEventListener('change', checkFakeBooking);
+
+        // จัดการ submit
+        const form = document.getElementById('dhammaForm');
+        const iframe = document.getElementById('hidden_iframe');
+        const responseDiv = document.getElementById('customResponseMsg');
+
+        form.addEventListener('submit', function(e) {
+            if (slotFullMsg.style.display === 'inline-block') {
+                e.preventDefault();
+                alert('ขออภัย วันเวลาที่เลือกถูกจองแล้ว (ระบบจำลอง) กรุณาเลือกวันอื่น');
+                return;
+            }
+
+            if (prefixOtherRadio.checked && prefixOtherInput.value.trim() !== '') {
+                document.querySelectorAll('input[name="entry.517826020"]').forEach(r => {
+                    if (r.value === 'อื่นๆ') r.value = prefixOtherInput.value.trim();
+                });
+            }
+
+            if (practiceOtherCheck.checked && practiceOtherInput.value.trim() !== '') {
+                practiceOtherCheck.value = practiceOtherInput.value.trim();
+            }
+
+            e.preventDefault();
+            form.target = 'hidden_iframe';
+
+            iframe.onload = function() {
+                responseDiv.style.display = 'block';
+                document.querySelector('button[type="submit"]').disabled = false;
+                responseDiv.scrollIntoView({ behavior: 'smooth' });
+            };
+
+            form.submit();
+            document.querySelector('button[type="submit"]').disabled = true;
+
+            setTimeout(() => {
+                document.querySelector('button[type="submit"]').disabled = false;
+            }, 8000);
+        });
+
+        form.addEventListener('reset', function() {
+            responseDiv.style.display = 'none';
+            slotFullMsg.style.display = 'none';
+            document.querySelector('button[type="submit"]').disabled = false;
+            prefixOtherInput.disabled = true;
+            practiceOtherInput.disabled = true;
+            prefixOtherInput.value = '';
+            practiceOtherInput.value = '';
+        });
+
+        if (dateInput) {
+            dateInput.min = '2025-04-01';
+            dateInput.max = '2025-07-24';
+            dateInput.value = '2025-04-01';
+        }
+    })();
+</script>
+<!-- หมายเหตุ: การตรวจสอบการจองซ้ำในตัวอย่างนี้เป็นการจำลองเฉพาะวันที่ 1-7 เม.ย. เช้าเท่านั้น 
+     ในทางปฏิบัติต้องเชื่อมกับ Google Sheets และใช้ App Script หรือ backend ตรวจสอบ แต่รูปแบบนี้แสดงแนวทาง UX -->
+</body>
+</html>
